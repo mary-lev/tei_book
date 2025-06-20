@@ -1,0 +1,25 @@
+{
+  "name": "tei-book-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.1",
+    "@reduxjs/toolkit": "^1.9.5",
+    "openseadragon": "^4.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "vite": "^4.1.0",
+    "@vitejs/plugin-react": "^4.0.0"
+  }
+}
