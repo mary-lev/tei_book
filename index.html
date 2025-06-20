@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TEI Book Viewer</title>
+<style>
+body,html{margin:0;height:100%;font-family:sans-serif;}
+#nav{padding:4px;background:#ecf0f1;}
+#container{display:flex;height:calc(100% - 40px);}
+.pane{overflow:auto;flex:1;}
+#divider{width:5px;cursor:col-resize;background:#bdc3c7;}
+#imagePane{position:relative;}
+#imagePane img{width:100%;display:block;}
+#overlay{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+.zone{position:absolute;border:2px solid rgba(52,152,219,0.8);pointer-events:auto;}
+.zone.highlight{background:rgba(52,152,219,0.2);}
+.facs-linked{cursor:pointer;}
+.facs-linked.highlight{background:rgba(231,76,60,0.3);}
+</style>
+</head>
+<body>
+<div id="nav">
+<button id="prevBtn">Prev</button>
+<input id="pageInput" type="number" value="1" min="1" style="width:50px;">
+<button id="nextBtn">Next</button>
+</div>
+<div id="container">
+<div id="textPane" class="pane"></div>
+<div id="divider"></div>
+<div id="imagePane" class="pane">
+<img id="facsimileImg" src="" alt="">
+<div id="overlay"></div>
+</div>
+</div>
+<script src="viewer.js"></script>
+</body>
+</html>
