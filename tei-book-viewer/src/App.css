@@ -1,0 +1,15 @@
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Remove any conflicting styles */
+.app-header,
+.app-main,
+.viewer-container,
+.text-pane,
+.image-pane {
+  /* Reset any existing styles */
+} 
