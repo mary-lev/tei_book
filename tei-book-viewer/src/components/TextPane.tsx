@@ -21,7 +21,7 @@ const TextContent = styled.div`
   flex: 1;
   padding: var(--space-6);
   overflow-y: auto;
-  font-family: 'Crimson Text', 'Times New Roman', serif;
+  font-family: var(--font-text);
   font-size: var(--text-lg);
   line-height: var(--leading-relaxed);
   color: var(--primary-text);
@@ -58,10 +58,6 @@ export const TextPane: React.FC = () => {
   const { getCurrentPage, activeZoneId, setActiveZone } = useViewerStore();
   const currentPage = getCurrentPage();
 
-  // Debug logging
-  console.log('TextPane - currentPage:', currentPage);
-  console.log('TextPane - textSegments:', currentPage?.textSegments);
-  console.log('TextPane - textSegments length:', currentPage?.textSegments?.length);
 
   const handleSegmentClick = (segment: TextSegment) => {
     if (segment.facs) {

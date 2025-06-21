@@ -8,6 +8,10 @@ export const GlobalStyles = createGlobalStyle`
     --accent-color: #3498db;
     --accent-hover: #2980b9;
 
+    /* Fonts */
+    --font-primary: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+    --font-text: 'Crimson Text', 'Times New Roman', serif;
+
     /* Background Colors */
     --bg-primary: #ffffff;
     --bg-secondary: #f8f9fa;
@@ -51,6 +55,10 @@ export const GlobalStyles = createGlobalStyle`
     --accent-color: #2980b9;
     --accent-hover: #1abc9c;
 
+    /* Fonts */
+    --font-primary: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+    --font-text: 'Crimson Text', 'Times New Roman', serif;
+
     /* Background Colors */
     --bg-primary: #2c3e50;
     --bg-secondary: #34495e;
@@ -75,7 +83,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+    font-family: var(--font-primary);
     color: var(--primary-text);
     background-color: var(--bg-primary);
     -webkit-font-smoothing: antialiased;

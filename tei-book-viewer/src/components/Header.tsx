@@ -12,6 +12,10 @@ const HeaderContainer = styled.header`
   border-bottom: 1px solid var(--border-color);
   height: 50px;
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 `;
 
 const BookTitle = styled.h1`
@@ -33,6 +37,11 @@ const ThemeButton = styled.button`
   border: 1px solid var(--border-color);
   border-radius: 4px;
   background-color: var(--bg-tertiary);
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: var(--bg-secondary);
+  }
 `;
 
 export const Header: React.FC = () => {

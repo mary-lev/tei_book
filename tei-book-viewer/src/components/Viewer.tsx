@@ -12,6 +12,8 @@ const ViewerContainer = styled.div`
   background-color: var(--bg-primary);
   border-left: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 
   @media (max-width: 1700px) {
@@ -23,7 +25,7 @@ const ViewerContainer = styled.div`
 
 export const Viewer: React.FC = () => {
   const handleZoneClick = (zoneId: string) => {
-    console.log('Zone clicked:', zoneId);
+    // future hook for handling zone interactions
   };
 
   return (
