@@ -25,7 +25,9 @@ export const useBookData = () => {
 
       try {
         const parser = new TEIParser();
-        const bookData = await parser.parseBook('/book_data/book.xml');
+        // Use Vite's base URL so the path works in GitHub Pages
+        const basePath = import.meta.env.BASE_URL || '/';
+        const bookData = await parser.parseBook(`${basePath}book_data/book.xml`);
         setBook(bookData);
       } catch (err) {
         console.error('Failed to load book:', err);
