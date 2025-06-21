@@ -87,7 +87,8 @@ export const ImagePane: React.FC<ImagePaneProps> = ({ onZoneClick }) => {
     if (currentPage) {
       viewer.open({
         type: 'image',
-        url: `/book_data/images/${currentPage.surface.source}`,
+        // Prepend base path so images load correctly on GitHub Pages
+        url: `${import.meta.env.BASE_URL}book_data/images/${currentPage.surface.source}`,
       });
     } else {
       viewer.close();
