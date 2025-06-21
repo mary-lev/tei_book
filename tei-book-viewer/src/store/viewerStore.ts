@@ -61,7 +61,6 @@ export const useViewerStore = create<ViewerStore>((set, get) => ({
     const { book, currentPage } = get();
     if (!book) return null;
     const page = book.pages.find(page => page.number === currentPage);
-    console.log(`Getting page ${currentPage}:`, page ? `found with ${page.textSegments.length} segments` : 'not found'); // DEBUG LOG
     return page || null;
   },
   
