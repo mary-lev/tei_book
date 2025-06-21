@@ -44,6 +44,25 @@ export const GlobalStyles = createGlobalStyle`
     --space-16: 4rem;
   }
 
+  :root.dark {
+    /* Primary Colors */
+    --primary-text: #ecf0f1;
+    --secondary-text: #95a5a6;
+    --accent-color: #2980b9;
+    --accent-hover: #1abc9c;
+
+    /* Background Colors */
+    --bg-primary: #2c3e50;
+    --bg-secondary: #34495e;
+    --bg-tertiary: #22313f;
+
+    /* Interactive States */
+    --highlight-text: #e74c3c;
+    --highlight-zone: rgba(41, 128, 185, 0.2);
+    --success-color: #27ae60;
+    --border-color: #7f8c8d;
+  }
+
   * {
     box-sizing: border-box;
   }
