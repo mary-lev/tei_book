@@ -10,6 +10,11 @@ const TextPaneContainer = styled.div`
   border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
 `;
 
 const TextContent = styled.div`
