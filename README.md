@@ -61,7 +61,10 @@ Here is a visual representation of the development plan:
 
 ### Phase 5: Build and Deployment
 - Configure the build process to generate optimized static assets.
-- Deploy the application to a static web host.
+- The repository now contains a GitHub Actions workflow that builds the viewer
+  and publishes the `tei-book-viewer/dist` directory to GitHub Pages. After the
+  workflow runs on `main`, the site will be served from
+  `https://<username>.github.io/tei_book/`.
 
 ## 5. Next Steps
 The immediate next step is to begin Phase 1: **Project Setup**. This involves creating the initial project structure and starting the data parsing implementation. 
