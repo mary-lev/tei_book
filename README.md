@@ -1,70 +1,158 @@
-# TEI Book Viewer: Development Plan
+# TEI Book Viewer
 
-This document outlines the development plan for the TEI Book Viewer application.
+An elegant, academic-focused web application for viewing digitized books encoded in the Text Encoding Initiative (TEI) format. The viewer provides a sophisticated dual-pane interface that synchronizes transcribed text with original page facsimiles, designed specifically for scholarly research and academic study.
 
-## 1. Project Overview
+## Features
 
-The goal is to build a web application for displaying digitized historical books. The application will feature a dual-pane interface with synchronized TEI-encoded text and facsimile page images, allowing for rich scholarly interaction.
+### Core Functionality
+- **Dual-Pane Interface**: Synchronized side-by-side view of transcribed text and high-resolution page images
+- **Interactive Text-Image Linking**: Click text segments to highlight corresponding zones on page images
+- **Advanced Image Viewer**: OpenSeadragon-powered deep zoom with smooth scroll-based navigation
+- **Comprehensive Page Navigation**: Intuitive controls for seamless page browsing
+- **Metadata Sidebar**: Detailed book information including publication details, statistics, and technical metadata
 
-## 2. Analysis Summary
+### User Experience
+- **Academic Design System**: Elegant typography using EB Garamond and Crimson Pro fonts
+- **Sophisticated Color Palette**: Warm, paper-like backgrounds with academic navy and burgundy accents
+- **Dual Theme Support**: Professional light and dark modes optimized for extended reading
+- **Responsive Layout**: Adaptive design for desktop, tablet, and mobile devices
+- **Accessibility**: WCAG-compliant focus management and screen reader support
 
-### Requirements (`FRONTEND_REQUIREMENTS.md`)
+### Technical Capabilities
+- **TEI XML Processing**: Robust parser for complex TEI document structures
+- **Zone-Based Highlighting**: Precise text-to-image coordinate mapping
+- **Real-time Statistics**: Dynamic page counts and text zone analytics
+- **Performance Optimized**: Lazy loading and efficient state management
 
-- **UI:** Responsive, dual-pane layout (Text/Image) with resizable panes.
-- **Functionality:**
-    - Synchronized navigation: clicking text highlights the corresponding image area, and vice-versa.
-    - Standard viewer features: zooming, panning, page navigation, text search.
-- **Design:** A modern, minimalist, and scholarly aesthetic with a provided design system (colors, fonts, spacing).
-- **Accessibility:** WCAG 2.1 AA compliance is required.
+## Technology Stack
 
-### Data (`FRONTEND_DATA_PACKAGE.md` & `book_data/`)
+- **Frontend Framework**: React 18 with TypeScript
+- **Build Tool**: Vite for fast development and optimized builds
+- **Styling**: Styled Components with CSS-in-JS architecture
+- **State Management**: Zustand for lightweight, scalable state handling
+- **Image Viewer**: OpenSeadragon for high-performance image manipulation
+- **XML Processing**: fast-xml-parser for efficient TEI document parsing
+- **Development**: ESLint, TypeScript strict mode, hot module replacement
 
-- **Source:** A single TEI XML file (`book.xml`) contains all text and facsimile data.
-- **Structure:**
-    - `<facsimile>` section maps image zones (lines, blocks) to coordinates.
-    - `<text>` section contains the transcribed text.
-    - `facs` attributes link text segments to their corresponding image zones.
-- **Assets:** Page images are provided as JPEGs in the `book_data/images/` directory.
+## Architecture
 
-## 3. Proposed Technology Stack
+### Component Structure
+```
+src/
+├── components/           # React UI components
+│   ├── Header.tsx       # Navigation bar with title and controls
+│   ├── Viewer.tsx       # Main container with split-pane layout
+│   ├── TextPane.tsx     # Transcribed text display and interaction
+│   ├── ImagePane.tsx    # OpenSeadragon image viewer with overlays
+│   ├── MetadataSidebar.tsx # Book information and statistics panel
+│   ├── PageNav.tsx      # Page navigation controls
+│   └── SplitPane.tsx    # Resizable dual-pane layout manager
+├── hooks/               # Custom React hooks
+│   ├── useBookData.ts   # TEI data loading and error handling
+│   └── useDarkMode.ts   # Theme persistence and management
+├── store/               # Zustand state management
+│   └── viewerStore.ts   # Application state and actions
+├── utils/               # Core utilities
+│   └── teiParser.ts     # TEI XML parsing and data transformation
+├── types/               # TypeScript definitions
+│   └── book.ts          # Data structure interfaces
+└── styles/              # Design system
+    └── GlobalStyles.ts  # Theme variables and global styles
+```
 
-- **Framework:** React with Vite (for a fast development experience).
-- **Language:** TypeScript (for type safety with complex data).
-- **Styling:** A CSS-in-JS library like `Styled-components` or `Emotion` to easily work with the provided design tokens.
-- **XML Parsing:** A browser-based XML parser like `fast-xml-parser`.
-- **Image Viewer:** `OpenSeadragon` for its powerful handling of high-resolution, zoomable images.
+### Data Flow
+1. **TEI Loading**: `useBookData` hook fetches and parses TEI XML via `teiParser`
+2. **State Management**: Zustand store manages book data, page navigation, and UI state
+3. **Component Sync**: Text and image panes communicate through shared store for highlighting
+4. **User Interaction**: Click events trigger zone highlighting and page navigation updates
 
-## 4. Development Phases
+## Getting Started
 
-Here is a visual representation of the development plan:
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn package manager
 
-![Development Plan Diagram](https://mermaid.ink/svg/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBzdWJncmFwaCBQaGFzZSAxOiBTZXR1cCAmIERhdGFcbiAgICAgICAgQVtQcm9qZWN0IFNjYWZmb2xkaW5nOiBWaXRlICsgUmVhY3QgKyBUU10gLS0-IEJ7RGF0YSBNb2RlbH07XG4gICAgICAgIENVWE1MIFBhcnNpbmcgTGlicmFyeV0gLS0-IEI7XG4gICAgICAgIEIgLS0-IEROUEFyc2UgYm9vay54bWxdO1xuICAgIGVuZFxuXG4gICAgc3ViZ3JhcGggUGhhc2UgMjogVUEgRGV2ZWxvcG1lbnRcbiAgICAgICAgRVtDcmVhdGUgVUEgQ29tcG9uZW50c10gLS0-IEZbRHVhbC1QYW5lIFZpZXdlcl07XG4gICAgICAgIEYgLS0-IEdcIlRleHQgUGFuZVwiO1xuICAgICAgICBGIC0tPiBHW0ltYWdlIFBhbmUgd2l0aCBPcGVuU2VhZHJhZ29uXTtcbiAgICAgICAgSVtTdGF0ZSBNYW5hZ2VtZW50XSAtLT4gRjtcbiAgICBfZW5kXG5cbiAgICBzdWJncmFwaCBQaGFzZSAzOiBJbnRlcmFjdGl2aXR5XG4gICAgICAgIEpbVGV4dC10by1JbWFnZSBTeW5jXSAtLT4gS3tTeW5jIExvZ2ljfTtcbiAgICAgICAgTFtJbWFnZS10by1UZXh0IFN5bmNdIC0tPiBLO1xuICAgICAgICBHIC0tPiBKO1xuICAgICAgICBIIC0tPiBMO1xuICAgICAgICBJIC0tPiBLO1xuICAgIGVuZFxuXG4gICAgc3ViZ3JhcGggUGhhc2UgNDogU3R5bGluZyAmIFBvbGlzaFxuICAgICAgICBNW0ltcGxlbWVudCBEZXNpZ24gU3lzdGVtXSAtLT4gTltSZXNwb25zaXZlIExheW91dHNdO1xuICAgICAgICBPW0FjY2Vzc2liaWxpdHldIC0tPiBOO1xuICAgIGVuZFxuXG4gICAgc3ViZ3JhcGggUGhhc2UgNTogRGVwbG95bWVudFxuICAgICAgICBRW0J1aWxkIGZvciBQcm9kdWN0aW9uXSAtLT4gUltEZXBsb3kgU3RhdGljIFNpdGVdO1xuICAgIGVuZFxuXG4gICAgRCAtLT4gRTtcbiAgICBLIC0tPiBNO1xuICAgIE4gLS0-IFE7XG4iLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9fQ)
+### Installation
+```bash
+# Clone repository and navigate to project
+cd tei-book-viewer
 
-### Phase 1: Project Setup & Data Model
-- Initialize the Vite + React + TypeScript project.
-- Set up the core data structures (TypeScript types) for the book, pages, text segments, and zones.
-- Implement the logic to fetch and parse the `book.xml` file into this data structure.
+# Install dependencies
+npm install
 
-### Phase 2: UI Development
-- Build the main UI components: `Header`, `Viewer`, `TextPane`, `ImagePane`.
-- Integrate `OpenSeadragon` into the `ImagePane`.
-- Set up a state management solution (e.g., React Context or Zustand) to handle application state like the current page and active zone.
+# Start development server
+npm run dev
+```
 
-### Phase 3: Interactivity & Synchronization
-- Implement the core text-to-image and image-to-text highlighting and navigation logic.
-- Wire up the UI components to the state management to ensure they react to changes.
+### Development Commands
+```bash
+npm run dev        # Start development server (http://localhost:5173)
+npm run build      # Create production build
+npm run preview    # Preview production build locally
+npm run lint       # Run ESLint code quality checks
+```
 
-### Phase 4: Styling & Finishing Touches
-- Apply the provided design system (colors, fonts, spacing) using a CSS-in-JS solution.
-- Ensure the layout is fully responsive for desktop, tablet, and mobile.
-- Perform an accessibility audit and implement necessary improvements (ARIA attributes, keyboard navigation).
+### Project Configuration
+- **Base Path**: Configured for GitHub Pages deployment (`/tei_book/`)
+- **TypeScript**: Strict mode with separate configs for app and build tools
+- **Linting**: ESLint with TypeScript and React hooks rules
+- **Styling**: CSS custom properties with comprehensive design tokens
 
-### Phase 5: Build and Deployment
-- Configure the build process to generate optimized static assets.
-- The repository now contains a GitHub Actions workflow that builds the viewer
-  and publishes the `tei-book-viewer/dist` directory to GitHub Pages. After the
-  workflow runs on `main`, the site will be served from
-  `https://<username>.github.io/tei_book/`.
+## TEI Document Requirements
 
-## 5. Next Steps
-The immediate next step is to begin Phase 1: **Project Setup**. This involves creating the initial project structure and starting the data parsing implementation. 
+### Supported TEI Structure
+```xml
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt><title>Book Title</title></titleStmt>
+      <publicationStmt><p>Publication information</p></publicationStmt>
+      <sourceDesc><p>Source description</p></sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <facsimile>
+    <surface xml:id="page_1" source="page_1.jpg">
+      <graphic url="page_1.jpg" width="1500" height="2800" />
+      <zone xml:id="zone_1" type="textline" ulx="100" uly="200" lrx="400" lry="250" />
+    </surface>
+  </facsimile>
+  <text>
+    <body>
+      <pb facs="#page_1"/>
+      <seg facs="#zone_1">Transcribed text content</seg>
+    </body>
+  </text>
+</TEI>
+```
+
+### File Organization
+```
+public/book_data/
+├── book.xml              # Main TEI document
+└── images/               # Page image directory
+    ├── page_1.jpg
+    ├── page_2.jpg
+    └── ...
+```
+
+## Academic Use Cases
+
+- **Digital Humanities Research**: Text analysis with visual manuscript context
+- **Paleography Studies**: Character and handwriting analysis with zoom capabilities
+- **Literary Scholarship**: Close reading with facsimile reference
+- **Historical Document Analysis**: Primary source examination with metadata context
+- **Teaching and Pedagogy**: Classroom presentation of historical texts
+
+## Contributing
+
+This project follows academic software development best practices:
+
+1. **Code Quality**: ESLint rules enforce consistent TypeScript patterns
+2. **Component Architecture**: Modular, reusable components with clear interfaces  
+3. **Type Safety**: Comprehensive TypeScript coverage with strict mode
+4. **Performance**: Optimized rendering and efficient state updates
+5. **Accessibility**: WCAG compliance and semantic HTML structure
+
+## License
+
+Open source project designed for academic and educational use.
