@@ -9,7 +9,7 @@ export const useDarkMode = () => {
   });
 
   useEffect(() => {
-    document.body.classList.toggle('dark', isDark);
+    document.documentElement.classList.toggle('dark', isDark);
     localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light');
   }, [isDark]);
 

@@ -79,6 +79,15 @@ export const ImagePane: React.FC<ImagePaneProps> = ({ onZoneClick }) => {
         element: containerRef.current,
         showNavigationControl: false,
         useCanvas: true,
+        zoomPerClick: 1.0,
+        gestureSettingsMouse: {
+          clickToZoom: false,
+          dblClickToZoom: false,
+        },
+        gestureSettingsTouch: {
+          clickToZoom: false,
+          dblClickToZoom: false,
+        },
       });
     }
 

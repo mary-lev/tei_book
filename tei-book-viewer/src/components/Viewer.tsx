@@ -30,7 +30,7 @@ export const Viewer: React.FC = () => {
 
   return (
     <ViewerContainer>
-      <SplitPane initialSize={50} minSize={20} maxSize={80}>
+      <SplitPane initialSize={50} minSize={30} maxSize={50}>
         <TextPane />
         <ImagePane onZoneClick={handleZoneClick} />
       </SplitPane>

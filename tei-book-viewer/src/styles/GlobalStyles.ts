@@ -3,25 +3,26 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyles = createGlobalStyle`
   :root {
     /* Primary Colors */
-    --primary-text: #2c3e50;
-    --secondary-text: #7f8c8d;
-    --accent-color: #3498db;
-    --accent-hover: #2980b9;
+    --primary-text: #1a365d;
+    --secondary-text: #4a5568;
+    --accent-color: #8b1538;
+    --accent-hover: #701434;
 
     /* Fonts */
-    --font-primary: 'Inter', 'SF Pro Display', system-ui, sans-serif;
-    --font-text: 'Crimson Text', 'Times New Roman', serif;
+    --font-primary: 'EB Garamond', 'Libre Baskerville', 'Georgia', serif;
+    --font-text: 'Crimson Pro', 'EB Garamond', 'Times New Roman', serif;
+    --font-ui: 'Inter', 'SF Pro Display', system-ui, sans-serif;
 
     /* Background Colors */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8f9fa;
-    --bg-tertiary: #ecf0f1;
+    --bg-primary: #fdfdf8;
+    --bg-secondary: #f7f7f0;
+    --bg-tertiary: #ede8d3;
 
     /* Interactive States */
-    --highlight-text: #e74c3c;
-    --highlight-zone: rgba(52, 152, 219, 0.2);
-    --success-color: #27ae60;
-    --border-color: #bdc3c7;
+    --highlight-text: #8b1538;
+    --highlight-zone: rgba(139, 21, 56, 0.15);
+    --success-color: #2d5016;
+    --border-color: #c5c1aa;
 
     /* Typography Scale */
     --text-xs: 0.75rem;
@@ -36,39 +37,45 @@ export const GlobalStyles = createGlobalStyle`
     --leading-tight: 1.25;
     --leading-normal: 1.5;
     --leading-relaxed: 1.75;
+    --leading-loose: 2.0;
 
     /* Spacing System */
     --space-1: 0.25rem;
     --space-2: 0.5rem;
     --space-3: 0.75rem;
     --space-4: 1rem;
+    --space-5: 1.25rem;
     --space-6: 1.5rem;
     --space-8: 2rem;
+    --space-10: 2.5rem;
     --space-12: 3rem;
     --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
   }
 
   :root.dark {
     /* Primary Colors */
-    --primary-text: #ecf0f1;
-    --secondary-text: #95a5a6;
-    --accent-color: #2980b9;
-    --accent-hover: #1abc9c;
+    --primary-text: #f7f5f0;
+    --secondary-text: #a69b85;
+    --accent-color: #c97064;
+    --accent-hover: #b85c4f;
 
     /* Fonts */
-    --font-primary: 'Inter', 'SF Pro Display', system-ui, sans-serif;
-    --font-text: 'Crimson Text', 'Times New Roman', serif;
+    --font-primary: 'EB Garamond', 'Libre Baskerville', 'Georgia', serif;
+    --font-text: 'Crimson Pro', 'EB Garamond', 'Times New Roman', serif;
+    --font-ui: 'Inter', 'SF Pro Display', system-ui, sans-serif;
 
     /* Background Colors */
-    --bg-primary: #2c3e50;
-    --bg-secondary: #34495e;
-    --bg-tertiary: #22313f;
+    --bg-primary: #2d2520;
+    --bg-secondary: #3a322b;
+    --bg-tertiary: #4a3f35;
 
     /* Interactive States */
-    --highlight-text: #e74c3c;
-    --highlight-zone: rgba(41, 128, 185, 0.2);
-    --success-color: #27ae60;
-    --border-color: #7f8c8d;
+    --highlight-text: #c97064;
+    --highlight-zone: rgba(201, 112, 100, 0.15);
+    --success-color: #7d9c65;
+    --border-color: #6b5b4a;
   }
 
   * {
@@ -88,13 +95,16 @@ export const GlobalStyles = createGlobalStyle`
     background-color: var(--bg-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga', 'kern';
+    text-rendering: optimizeLegibility;
   }
 
   /* Typography */
   h1, h2, h3, h4, h5, h6 {
-    margin: 0 0 var(--space-4) 0;
-    font-weight: 600;
+    margin: 0 0 var(--space-6) 0;
+    font-weight: 400;
     line-height: var(--leading-tight);
+    font-family: var(--font-primary);
   }
 
   h1 { font-size: var(--text-3xl); }
@@ -105,8 +115,9 @@ export const GlobalStyles = createGlobalStyle`
   h6 { font-size: var(--text-sm); }
 
   p {
-    margin: 0 0 var(--space-4) 0;
-    line-height: var(--leading-relaxed);
+    margin: 0 0 var(--space-5) 0;
+    line-height: var(--leading-loose);
+    font-family: var(--font-text);
   }
 
   /* Links */

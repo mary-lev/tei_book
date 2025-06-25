@@ -24,7 +24,7 @@ export class TEIParser {
       const text = tei.text;
 
       // Extract metadata
-      const title = header.fileDesc.titleStmt.title._text || 'Untitled Book';
+      const title = header.fileDesc.titleStmt.title._text || header.fileDesc.titleStmt.title || 'Untitled Book';
       const source = header.fileDesc.sourceDesc.p._text || '';
       const publicationInfo = header.fileDesc.publicationStmt.p._text || '';
 
