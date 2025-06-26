@@ -3,26 +3,26 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyles = createGlobalStyle`
   :root {
     /* Primary Colors */
-    --primary-text: #1a365d;
-    --secondary-text: #4a5568;
-    --accent-color: #8b1538;
-    --accent-hover: #701434;
+    --primary-text: #1f2937;
+    --secondary-text: #6b7280;
+    --accent-color: #3b82f6;
+    --accent-hover: #2563eb;
 
     /* Fonts */
-    --font-primary: 'EB Garamond', 'Libre Baskerville', 'Georgia', serif;
-    --font-text: 'Crimson Pro', 'EB Garamond', 'Times New Roman', serif;
+    --font-primary: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+    --font-text: 'Lora', 'Georgia', serif;
     --font-ui: 'Inter', 'SF Pro Display', system-ui, sans-serif;
 
     /* Background Colors */
-    --bg-primary: #fdfdf8;
-    --bg-secondary: #f7f7f0;
-    --bg-tertiary: #ede8d3;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-tertiary: #f3f4f6;
 
     /* Interactive States */
-    --highlight-text: #8b1538;
-    --highlight-zone: rgba(139, 21, 56, 0.15);
-    --success-color: #2d5016;
-    --border-color: #c5c1aa;
+    --highlight-text: #3b82f6;
+    --highlight-zone: rgba(59, 130, 246, 0.15);
+    --success-color: #10b981;
+    --border-color: #d1d5db;
 
     /* Typography Scale */
     --text-xs: 0.75rem;
@@ -56,26 +56,26 @@ export const GlobalStyles = createGlobalStyle`
 
   :root.dark {
     /* Primary Colors */
-    --primary-text: #f7f5f0;
-    --secondary-text: #a69b85;
-    --accent-color: #c97064;
-    --accent-hover: #b85c4f;
+    --primary-text: #f9fafb;
+    --secondary-text: #9ca3af;
+    --accent-color: #60a5fa;
+    --accent-hover: #3b82f6;
 
     /* Fonts */
-    --font-primary: 'EB Garamond', 'Libre Baskerville', 'Georgia', serif;
-    --font-text: 'Crimson Pro', 'EB Garamond', 'Times New Roman', serif;
+    --font-primary: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+    --font-text: 'Lora', 'Georgia', serif;
     --font-ui: 'Inter', 'SF Pro Display', system-ui, sans-serif;
 
     /* Background Colors */
-    --bg-primary: #2d2520;
-    --bg-secondary: #3a322b;
-    --bg-tertiary: #4a3f35;
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-tertiary: #374151;
 
     /* Interactive States */
-    --highlight-text: #c97064;
-    --highlight-zone: rgba(201, 112, 100, 0.15);
-    --success-color: #7d9c65;
-    --border-color: #6b5b4a;
+    --highlight-text: #60a5fa;
+    --highlight-zone: rgba(96, 165, 250, 0.15);
+    --success-color: #34d399;
+    --border-color: #4b5563;
   }
 
   * {

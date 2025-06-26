@@ -19,12 +19,14 @@ const TextPaneContainer = styled.div`
 
 const TextContent = styled.div`
   flex: 1;
-  padding: var(--space-6);
+  padding: var(--space-6) var(--space-10);
   overflow-y: auto;
   font-family: var(--font-text);
   font-size: var(--text-lg);
   line-height: var(--leading-relaxed);
   color: var(--primary-text);
+  max-width: 65ch;
+  margin: 0 auto;
 `;
 
 const TextSegmentElement = styled.span<{ $isActive: boolean }>`
@@ -51,7 +53,7 @@ const EmptyState = styled.div`
 `;
 
 const TextSegmentWrapper = styled.div`
-  margin-bottom: var(--space-1);
+  margin-bottom: var(--space-4);
 `;
 
 export const TextPane: React.FC = () => {

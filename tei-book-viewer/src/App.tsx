@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import { useBookData } from './hooks/useBookData';
 import { Header } from './components/Header';
 import { Viewer } from './components/Viewer';
-import { MetadataSidebar } from './components/MetadataSidebar';
 import { GlobalStyles } from './styles/GlobalStyles';
 import styled from 'styled-components';
 
@@ -19,28 +17,15 @@ const MainContent = styled.main`
 `;
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   useBookData();
-
-  const handleInfoClick = () => {
-    setIsSidebarOpen(true);
-  };
-
-  const handleSidebarClose = () => {
-    setIsSidebarOpen(false);
-  };
 
   return (
     <AppContainer>
       <GlobalStyles />
-      <Header onInfoClick={handleInfoClick} />
+      <Header />
       <MainContent>
         <Viewer />
       </MainContent>
-      <MetadataSidebar 
-        isOpen={isSidebarOpen} 
-        onClose={handleSidebarClose} 
-      />
     </AppContainer>
   );
 }

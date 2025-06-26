@@ -5,6 +5,7 @@ import { useViewerStore } from '../store/viewerStore';
 interface MetadataSidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  isPersistent?: boolean;
 }
 
 const SidebarOverlay = styled.div<{ isOpen: boolean }>`
@@ -20,39 +21,40 @@ const SidebarOverlay = styled.div<{ isOpen: boolean }>`
   transition: opacity 0.3s ease, visibility 0.3s ease;
 `;
 
-const SidebarContainer = styled.div<{ isOpen: boolean }>`
-  position: fixed;
+const SidebarContainer = styled.div.withConfig({
+  shouldForwardProp: (prop) => !['isOpen', 'isPersistent'].includes(prop),
+})<{ isOpen: boolean; isPersistent?: boolean }>`
+  position: ${props => props.isPersistent ? 'static' : 'fixed'};
   top: 0;
-  right: 0;
-  width: 400px;
-  height: 100vh;
-  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-  border-left: 2px solid var(--border-color);
-  box-shadow: -4px 0 20px rgba(26, 54, 93, 0.15);
-  transform: translateX(${props => props.isOpen ? '0' : '100%'});
-  transition: transform 0.3s ease;
-  z-index: 1001;
+  right: ${props => props.isPersistent ? 'auto' : '0'};
+  width: ${props => props.isPersistent ? '100%' : '400px'};
+  height: ${props => props.isPersistent ? '100%' : '100vh'};
+  background: ${props => props.isPersistent ? 'var(--bg-secondary)' : 'linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%)'};
+  border-left: ${props => props.isPersistent ? 'none' : '2px solid var(--border-color)'};
+  box-shadow: ${props => props.isPersistent ? 'none' : '-4px 0 20px rgba(26, 54, 93, 0.15)'};
+  transform: ${props => props.isPersistent ? 'none' : `translateX(${props.isOpen ? '0' : '100%'})`};
+  transition: ${props => props.isPersistent ? 'none' : 'transform 0.3s ease'};
+  z-index: ${props => props.isPersistent ? 'auto' : '1001'};
   display: flex;
   flex-direction: column;
   
   @media (max-width: 768px) {
-    width: 100%;
+    width: ${props => props.isPersistent ? '100%' : '100%'};
   }
 `;
 
 const SidebarHeader = styled.div`
-  padding: var(--space-6) var(--space-6) var(--space-4);
+  padding: var(--space-4);
   border-bottom: 1px solid var(--border-color);
-  background-color: var(--bg-tertiary);
+  background-color: var(--bg-primary);
 `;
 
 const SidebarTitle = styled.h2`
   font-family: var(--font-primary);
-  font-size: var(--text-xl);
-  font-weight: 400;
+  font-size: var(--text-lg);
+  font-weight: 600;
   color: var(--primary-text);
-  margin: 0 0 var(--space-2) 0;
-  letter-spacing: 0.02em;
+  margin: 0;
 `;
 
 const CloseButton = styled.button`
@@ -80,43 +82,39 @@ const CloseButton = styled.button`
 
 const SidebarContent = styled.div`
   flex: 1;
-  padding: var(--space-6);
+  padding: var(--space-4);
   overflow-y: auto;
 `;
 
 const MetadataSection = styled.div`
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
 `;
 
 const SectionTitle = styled.h3`
   font-family: var(--font-primary);
-  font-size: var(--text-lg);
-  font-weight: 400;
+  font-size: var(--text-base);
+  font-weight: 600;
   color: var(--primary-text);
-  margin: 0 0 var(--space-4) 0;
-  padding-bottom: var(--space-2);
-  border-bottom: 1px solid var(--border-color);
+  margin: 0 0 var(--space-3) 0;
 `;
 
 const MetadataItem = styled.div`
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 `;
 
 const MetadataLabel = styled.dt`
   font-family: var(--font-ui);
   font-size: var(--text-sm);
   font-weight: 600;
-  color: var(--secondary-text);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: var(--primary-text);
   margin-bottom: var(--space-1);
 `;
 
 const MetadataValue = styled.dd`
-  font-family: var(--font-text);
-  font-size: var(--text-base);
-  color: var(--primary-text);
-  line-height: var(--leading-relaxed);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--secondary-text);
+  line-height: var(--leading-normal);
   margin: 0;
 `;
 
@@ -151,31 +149,33 @@ const StatLabel = styled.div`
   letter-spacing: 0.05em;
 `;
 
-export const MetadataSidebar: React.FC<MetadataSidebarProps> = ({ isOpen, onClose }) => {
+export const MetadataSidebar: React.FC<MetadataSidebarProps> = ({ isOpen, onClose, isPersistent = false }) => {
   const { book, currentPage } = useViewerStore();
 
   if (!book) return null;
 
   const handleOverlayClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
+    if (e.target === e.currentTarget && !isPersistent) {
       onClose();
     }
   };
 
   return (
     <>
-      <SidebarOverlay isOpen={isOpen} onClick={handleOverlayClick} />
-      <SidebarContainer isOpen={isOpen}>
+      {!isPersistent && <SidebarOverlay isOpen={isOpen} onClick={handleOverlayClick} />}
+      <SidebarContainer isOpen={isOpen} isPersistent={isPersistent}>
         <SidebarHeader>
-          <SidebarTitle>Book Information</SidebarTitle>
-          <CloseButton onClick={onClose} aria-label="Close sidebar">
-            ×
-          </CloseButton>
+          <SidebarTitle>Metadata</SidebarTitle>
+          {!isPersistent && (
+            <CloseButton onClick={onClose} aria-label="Close sidebar">
+              ×
+            </CloseButton>
+          )}
         </SidebarHeader>
         
         <SidebarContent>
           <MetadataSection>
-            <SectionTitle>Publication Details</SectionTitle>
+            <SectionTitle>Bibliographic Information</SectionTitle>
             
             <MetadataItem>
               <MetadataLabel>Title</MetadataLabel>

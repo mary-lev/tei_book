@@ -3,23 +3,29 @@ import styled from 'styled-components';
 import { TextPane } from './TextPane';
 import { ImagePane } from './ImagePane';
 import { SplitPane } from './SplitPane';
+import { MetadataSidebar } from './MetadataSidebar';
 
 const ViewerContainer = styled.div`
   height: 100%;
   width: 100%;
-  max-width: 1700px;
-  margin: 0 auto;
+  display: flex;
   background-color: var(--bg-primary);
-  border-left: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+`;
 
-  @media (max-width: 1700px) {
-    border-left: none;
-    border-right: none;
-  }
+const MetadataPanel = styled.div`
+  width: 320px;
+  min-width: 280px;
+  max-width: 400px;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  flex-shrink: 0;
+`;
+
+const ContentArea = styled.div`
+  flex: 1;
+  display: flex;
+  min-width: 0;
 `;
 
 
@@ -30,10 +36,15 @@ export const Viewer: React.FC = () => {
 
   return (
     <ViewerContainer>
-      <SplitPane initialSize={50} minSize={30} maxSize={50}>
-        <TextPane />
-        <ImagePane onZoneClick={handleZoneClick} />
-      </SplitPane>
+      <MetadataPanel>
+        <MetadataSidebar isOpen={true} onClose={() => {}} isPersistent={true} />
+      </MetadataPanel>
+      <ContentArea>
+        <SplitPane initialSize={50} minSize={30} maxSize={70}>
+          <TextPane />
+          <ImagePane onZoneClick={handleZoneClick} />
+        </SplitPane>
+      </ContentArea>
     </ViewerContainer>
   );
 };
